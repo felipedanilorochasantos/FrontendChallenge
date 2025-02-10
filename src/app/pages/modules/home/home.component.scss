@@ -1,0 +1,26 @@
+p {
+  margin: 0;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.form-control::placeholder {
+  background-color: #1F1F1F !important;
+  color: #FAFAFA;
+}
+
+.form-control {
+  background-color: #1F1F1F !important;
+  color: #FAFAFA;
+  border: 1px solid #3D3D3D;
+}
+
+.form-control:focus {
+  background-color: #1F1F1F !important;
+}
+

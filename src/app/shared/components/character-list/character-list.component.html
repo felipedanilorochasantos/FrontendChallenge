@@ -1,0 +1,80 @@
+<ng-container *ngIf="enableInfiniteScroll; else noInfiniteScroll">
+  <div infinite-scroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="150"
+       [scrollWindow]="true"
+       (scrolled)="onScrollDown()"
+       *ngIf="characters.results.length > 0; else noResults">
+    <ng-container *ngTemplateOutlet="characterList"></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #noInfiniteScroll>
+  <div  *ngIf="isFavoritesPage ? hasFavorites() : characters.results.length > 0; else noResults">
+    <ng-container *ngTemplateOutlet="characterList"></ng-container>
+  </div>
+</ng-template>
+
+
+<ng-template #characterList>
+  <div class="album py-2">
+    <div class="container">
+
+      <div *ngIf="isFavoritesPage; else homeLayout">
+        <div class="row  row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <ng-container *ngFor="let character of characters.results">
+            <div *ngIf="character.isFavorite" class="col" >
+              <div class="card shadow-sm">
+                <img [src]="character.image" class="bd-placeholder-img card-img-top" alt="Character Image">
+                <div class="favorite" (click)="removeFavorite(character.id)">
+                  <img src="assets/imgs/icon-heart-black.svg" alt="Heart Icon">
+                </div>
+                <div class="card-body">
+                  <p class="title-card creepster-regular">{{ character.name }}</p>
+                  <p class="card-text poppins-regular">{{ character.species }}</p>
+                  <p class="card-text poppins-regular">{{ character.type }}</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <ng-template #homeLayout>
+        <div *ngFor="let character of characters.results | slice:0:characters.results.length/3; let i = index"
+              class="row mb-4 row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col" *ngFor="let character of characters.results.slice(i * 3, i * 3 + 3)">
+            <div class="card h-100 shadow-sm">
+              <img [src]="character.image" class="bd-placeholder-img card-img-top" alt="Character Image">
+              <div [ngClass]="character.isFavorite ? 'favorite' : 'not-favorite'"
+                    (click)="toggleFavorite.emit({ id: character.id, isFavorite: character.isFavorite })">
+                <img [src]="'assets/imgs/icon-heart-' +
+                    (character.isFavorite ? 'black.svg' : 'transparent.svg')"
+                      alt="Heart Icon">
+              </div>
+              <div class="card-body">
+                <p class="title-card creepster-regular">{{ character.name }}</p>
+                <p class="card-text poppins-regular">{{ character.species }}</p>
+                <p class="card-text poppins-regular">{{ character.type }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #noResults>
+  <div class="container not-found">
+    <p class="title poppins-bold-italic mb-2">{{ isFavoritesPage ? 'Parece que você ainda não tem favoritos' : 'Nada foi encontrado' }}</p>
+    <p class="subtitle poppins-regular mb-3">
+      {{ isFavoritesPage ? 'Volte à página inicial e escolha os melhores para você.' : 'Tente realizar uma nova busca.' }}
+    </p>
+    <button *ngIf="isFavoritesPage" (click)="goToHome()" class="btn btn-light rounded-pill px-3 poppins-semibold">
+      Voltar ao início
+    </button>
+  </div>
+</ng-template>

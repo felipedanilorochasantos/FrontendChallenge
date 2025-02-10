@@ -1,0 +1,90 @@
+.header {
+  background-color: #0A0A0A;
+
+}
+
+img {
+  height: 68px;
+  width: 153px;
+  object-fit: inherit;
+}
+
+header {
+  margin-right: 0.625rem;
+  margin-left: 0.625rem;
+  border-bottom: 0 !important;
+}
+
+
+.menu {
+  display: flex;
+  background: #111;
+  border-radius: 15px;
+  width: fit-content;
+  border: 1px solid, #3D3D3D;
+}
+
+.menu img {
+  height: 16px;
+  width: 16px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 50px;
+  color: #bbb;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-item.active {
+  background: white;
+  color: black;
+  border-radius: 12px 0px 0px 12px;
+}
+
+.menu-item.active-right {
+  background: white;
+  color: black;
+  border-radius: 0px 12px 12px 0px;
+}
+
+
+.icon {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.badge {
+  background: white;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 3px 6px;
+  margin-left: 8px;
+}
+
+.badge.active {
+  background: black;
+  color: white;
+}
+
+.text-end {
+  justify-items: end;
+}
+
+
+@media (min-width: 992px) {
+  .container, .container-lg, .container-md, .container-sm {
+      max-width: 686px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 927px !important;
+  }
+}

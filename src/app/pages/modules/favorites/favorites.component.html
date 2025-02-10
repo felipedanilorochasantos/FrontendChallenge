@@ -1,0 +1,13 @@
+<div *ngIf="characters$ | async as characters">
+  <div class="search container">
+    <div class="logo-container">
+      <img src="assets/imgs/logo-favorites.svg" alt="Favorites Logo" class="logo">
+    </div>
+  </div>
+  <app-character-list
+    [characters]="characters"
+    [isFavoritesPage]="true"
+    [enableInfiniteScroll]="false"
+    (toggleFavorite)="removeFavorite($event.id, false)">
+  </app-character-list>
+</div>

@@ -1,0 +1,24 @@
+<div class="header">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="col-md-3 mb-2 mb-md-0">
+      <a class="d-inline-flex link-body-emphasis text-decoration-none">
+        <img src="assets/imgs/header-logo.svg" alt="">
+      </a>
+    </div>
+    <div class="col-md-3 text-end">
+      <div class="menu">
+        <div routerLink="/home" routerLinkActive="active" class="menu-item">
+          <img [src]="isActive('/home') ? 'assets/imgs/icon-house-black.svg' : 'assets/imgs/icon-house-white.svg'"
+               class="icon" alt="House Icon">
+          <span>Início</span>
+        </div>
+        <div routerLink="/favorites" routerLinkActive="active-right" class="menu-item">
+          <img [src]="isActive('/favorites') ? 'assets/imgs/icon-heart-black.svg' : 'assets/imgs/icon-heart-white.svg'"
+               class="icon" alt="Heart Icon">
+          <span>Favoritos</span>
+          <span class="badge" routerLinkActive="active">{{ numberFavorites }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
